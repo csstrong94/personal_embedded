@@ -42,8 +42,8 @@
 //
 //*****************************************************************************
 
-#include "inc/hw_regaccess.h"
-#include "inc/hw_memmap.h"
+#include "hw_regaccess.h"
+#include "hw_memmap.h"
 
 #ifdef __MSP430_HAS_ADC12_B__
 #include "adc12_b.h"

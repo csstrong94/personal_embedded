@@ -38,7 +38,7 @@
 #ifndef __MSP430WARE_ADC12_B_H__
 #define __MSP430WARE_ADC12_B_H__
 
-#include "inc/hw_memmap.h"
+#include "hw_memmap.h"
 
 #ifdef __MSP430_HAS_ADC12_B__
 
@@ -53,7 +53,7 @@ extern "C"
 {
 #endif
 
-#include "inc/hw_regaccess.h"
+#include "hw_regaccess.h"
 //*****************************************************************************
 //
 //! \brief Used in the ADC12_B_init() function as the param parameter.

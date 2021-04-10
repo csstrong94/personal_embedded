@@ -4,7 +4,10 @@
 
 
 # dirs
-LINKER_DIR = /usr/bin/msp430-gcc/include/
+
+HOME_DIR = /home/chrisstrong/
+PROJ_DIR = $(HOME_DIR)/personal_embedded
+MSP430_PROJ_DIR = $(PROJ_DIR)/msp430/
 BUILD_DIR = build
 OBJECT_DIR = build/obj
 SRC_DIR = src
@@ -34,10 +37,10 @@ CPPFLAGS = -I$(INCLUDES) -D__MSP430FR6989__
 CFLAGS = -Wall -g -O0 -std=c99 
 
 #linker flags
-LINKER_FILE = msp430fr6989.ld
+LINKER_FILE = $(MSP430_PROJ_DIR)/msp430fr6989.ld
 LDFLAGS = -Wl,-Map=$(BASE).map,--unresolved-symbols=ignore-in-object-files \
-	  -mmcu=$(PLATFORM) \
-	   -msmall -T $(LINKER_FILE)
+	 -msmall -L $(MSP430_PROJ_DIR) -mmcu=$(PLATFORM) 
+
 # objcopy flags
 OBJCOPY = msp430-elf-objcopy
 OCFLAGS = -O $(EXEC_FORMAT) $(TARGET) $(BASE).hex
