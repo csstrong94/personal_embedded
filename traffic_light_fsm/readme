@@ -1,0 +1,2 @@
+this is a traffic light finite state machine on tm4c123g ARM cortex-M based MCU. In order to run it correctly, disable the texas OS init and enable the PLL manually to set  
+the system clock to 80 MHz. This can be done by including the PLL header and calling PLL_Init() in the main function.
