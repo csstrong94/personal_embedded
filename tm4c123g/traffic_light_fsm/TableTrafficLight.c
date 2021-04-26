@@ -96,34 +96,6 @@ STyp FSM[14] = {
 
 // ***** 3. Subroutines Section *****
 
-	void Set_PLL_80_MHz() {
-		// set usercc2 to use RCC2
-	SYSCTL_RCC2_R |= 0x8000000;
-	
-	// set BYPASS2 in RCC2
-	SYSCTL_RCC2_R |= 0x00000800;
-
-	//select XTAL in RCC
-	SYSCTL_RCC_R = (SYSCTL_RCC_R &~0x000007C0) + 0x00000540; //10101 in XTAL field for 16 MHz
-	
-	SYSCTL_RCC2_R &= ~0x00000070;  // configure for main oscillator source
-  // 3) activate PLL by clearing PWRDN
-  SYSCTL_RCC2_R &= ~0x00002000;
-	
-  // 4) set the desired system divider
-  SYSCTL_RCC2_R |= 0x40000000;   // use 400 MHz PLL
-  SYSCTL_RCC2_R = (SYSCTL_RCC2_R&~ 0x1FC00000)  // clear system clock divider
-                  + (4<<22);      // configure for 80 MHz clock
-	
-  // 5) wait for the PLL to lock by polling PLLLRIS
-  while((SYSCTL_RIS_R&0x00000040)==0){};  // wait for PLLRIS bit
-  // 6) enable use of PLL by clearing BYPASS
-		
-  SYSCTL_RCC2_R &= ~0x00000800;
-		
-		
-	}
-
 void PortB_Init() { 
 	volatile unsigned long delay;
 	SYSCTL_RCGC2_R |= 0x00000002;			// provide clock to GPIO
@@ -173,7 +145,6 @@ void PortF_Init(void){ volatile unsigned long delay;
 int main(void){ 
 	volatile unsigned long curr_t;
   TExaS_Init(SW_PIN_PE210, LED_PIN_PB543210,ScopeOff); // activate grader and set system clock to 80 MHz
-	//Set_PLL_80_MHz();
 	SysTick_Init();
 	PortE_Init();
 	PortB_Init();
