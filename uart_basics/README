@@ -1,0 +1,4 @@
+uart, PLL, and SysTick drivers and application code to turn on LED1 and LED2 on a connected tm4c1294 from the tm4c123, 
+and turn toggle the led from blue to red on the tm4c123 from the tm4c1294 using user_sw1 and user_sw2. 
+
+we use UART1 on the tm4c123 launchpad and UART6 on the tm4c1294 launchpad. 115200 baud 8N1 FIFO enabled 
